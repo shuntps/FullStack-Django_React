@@ -1,15 +1,23 @@
-from rest_framework import generics, permissions
+from rest_framework import generics
 from . import serializers
 from . import models
 
 
 class VendorList(generics.ListCreateAPIView):
     queryset = models.Vendor.objects.all()
-    serializer_class = serializers.VendorSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    serializer_class = serializers.VendorListSerializer
 
 
 class VendorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Vendor.objects.all()
     serializer_class = serializers.VendorDetailSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+
+
+class ProductList(generics.ListCreateAPIView):
+    queryset = models.Product.objects.all()
+    serializer_class = serializers.ProductListSerializer
+
+
+class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Product.objects.all()
+    serializer_class = serializers.ProductDetailSerializer
