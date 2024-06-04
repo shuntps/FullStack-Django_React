@@ -1,4 +1,5 @@
 asgiref
 django
 djangorestframework
+djangorestframework-simplejwt
 mysqlclient
