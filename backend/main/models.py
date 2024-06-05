@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 # Vendor Models
 class Vendor(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE)
     address = models.TextField(null=True)
 
     def __str__(self):
@@ -71,3 +72,17 @@ class CustomerAddress(models.Model):
 
     def __str__(self):
         return self.address
+
+
+# Product Rating and Reviews
+class ProductRating(models.Model):
+    customer = models.ForeignKey(
+        Customer, on_delete=models.CASCADE, related_name='customer_ratings')
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='product_ratings')
+    rating = models.IntegerField()
+    reviews = models.TextField()
+    add_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.rating} - {self.reviews}'
